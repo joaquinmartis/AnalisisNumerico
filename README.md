@@ -126,3 +126,12 @@ Usá sintaxis de Python/SymPy:
 | Raíz        | `sqrt(x)`       |
 | Seno/Coseno | `sin(x)`, `cos(x)` |
 | Valor abs   | `Abs(x)`        |
+
+## Arrancar api
+
+```bash
+cd api
+pip install -r requirements.txt
+python app.py
+```
+La api corre en http://localhost:5000/
