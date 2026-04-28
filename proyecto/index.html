@@ -348,7 +348,7 @@
   <!-- Stats bar -->
   <div class="stats-bar">
     <div class="stat">
-      <span class="stat-value">1</span>
+      <span class="stat-value">4</span>
       <span class="stat-label">Disponibles</span>
     </div>
     <div class="stat">
@@ -356,7 +356,7 @@
       <span class="stat-label">Próximamente</span>
     </div>
     <div class="stat">
-      <span class="stat-value">3</span>
+      <span class="stat-value">4</span>
       <span class="stat-label">Categorías</span>
     </div>
     <div class="stat">
@@ -365,9 +365,9 @@
     </div>
   </div>
 
-  <!-- Categoría 1: Búsqueda de raíces -->
+  <!-- Categoría 1A: Búsqueda de raíces (Cerrados) -->
   <div class="category">
-    <div class="category-title">01 — Búsqueda de raíces</div>
+    <div class="category-title">01A — Búsqueda de raíces (Cerrados)</div>
     <div class="methods-grid">
 
       <a href="biseccion.html" class="method-card">
@@ -385,23 +385,45 @@
         </div>
       </a>
 
-      <div class="method-card disabled">
+      <a href="falsa_posicion.html" class="method-card">
         <div class="card-top">
           <span class="method-index">#002</span>
-          <span class="status-badge soon">Próximamente</span>
+          <span class="status-badge ready">Disponible</span>
         </div>
         <div class="method-icon">⊗</div>
         <div class="method-name">Falsa Posición</div>
         <div class="method-desc">Similar a bisección pero usa interpolación lineal para hallar el siguiente punto. Converge más rápido en muchos casos.</div>
         <div class="method-tags">
-          <span class="tag neutral">intervalo</span>
-          <span class="tag neutral">interpolación</span>
+          <span class="tag">intervalo</span>
+          <span class="tag">interpolación</span>
         </div>
-      </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Categoría 1B: Búsqueda de raíces (Abiertos) -->
+  <div class="category">
+    <div class="category-title">01B — Búsqueda de raíces (Abiertos)</div>
+    <div class="methods-grid">
+
+      <a href="punto_fijo.html" class="method-card">
+        <div class="card-top">
+          <span class="method-index">#003</span>
+          <span class="status-badge ready">Disponible</span>
+        </div>
+        <div class="method-icon">⟳</div>
+        <div class="method-name">Punto Fijo</div>
+        <div class="method-desc">Reescribe f(x)=0 como x=g(x) y evalúa iterativamente la función g(x) partiendo de un valor inicial x0.</div>
+        <div class="method-tags">
+          <span class="tag">abierto</span>
+          <span class="tag">lineal</span>
+        </div>
+      </a>
 
       <div class="method-card disabled">
         <div class="card-top">
-          <span class="method-index">#003</span>
+          <span class="method-index">#004</span>
           <span class="status-badge soon">Próximamente</span>
         </div>
         <div class="method-icon">∂</div>
@@ -415,7 +437,7 @@
 
       <div class="method-card disabled">
         <div class="card-top">
-          <span class="method-index">#004</span>
+          <span class="method-index">#005</span>
           <span class="status-badge soon">Próximamente</span>
         </div>
         <div class="method-icon">∫</div>
@@ -471,33 +493,140 @@
     <div class="category-title">03 — Integración numérica</div>
     <div class="methods-grid">
 
-      <div class="method-card disabled">
+      <a href="trapecios.html" class="method-card">
         <div class="card-top">
           <span class="method-index">#007</span>
-          <span class="status-badge soon">Próximamente</span>
+          <span class="status-badge ready">Disponible</span>
         </div>
         <div class="method-icon">∫</div>
         <div class="method-name">Trapecio</div>
         <div class="method-desc">Aproxima el área bajo una curva usando trapecios. Simple y efectivo con pasos pequeños.</div>
         <div class="method-tags">
-          <span class="tag neutral">área</span>
-          <span class="tag neutral">O(h²)</span>
+          <span class="tag">área</span>
+          <span class="tag">O(h²)</span>
         </div>
-      </div>
+      </a>
 
-      <div class="method-card disabled">
+      <a href="simpson_1_3.html" class="method-card">
         <div class="card-top">
           <span class="method-index">#008</span>
-          <span class="status-badge soon">Próximamente</span>
+          <span class="status-badge ready">Disponible</span>
         </div>
         <div class="method-icon">∮</div>
         <div class="method-name">Simpson 1/3</div>
         <div class="method-desc">Usa parábolas para aproximar la integral. Mayor precisión que trapecio con el mismo número de puntos.</div>
         <div class="method-tags">
-          <span class="tag neutral">parábolas</span>
-          <span class="tag neutral">O(h⁴)</span>
+          <span class="tag">parábolas</span>
+          <span class="tag">O(h⁴)</span>
         </div>
-      </div>
+      </a>
+
+      <a href="simpson_3_8.html" class="method-card">
+        <div class="card-top">
+          <span class="method-index">#009</span>
+          <span class="status-badge ready">Disponible</span>
+        </div>
+        <div class="method-icon">∯</div>
+        <div class="method-name">Simpson 3/8</div>
+        <div class="method-desc">Usa polinomios cúbicos para la aproximación. Requiere múltiplos de 3 subintervalos. Ligeramente más preciso que 1/3.</div>
+        <div class="method-tags">
+          <span class="tag">cúbica</span>
+          <span class="tag">O(h⁴)</span>
+        </div>
+      </a>
+
+      <a href="romberg.html" class="method-card">
+        <div class="card-top">
+          <span class="method-index">#010</span>
+          <span class="status-badge ready">Disponible</span>
+        </div>
+        <div class="method-icon">◺</div>
+        <div class="method-name">Integración de Romberg</div>
+        <div class="method-desc">Aplica la extrapolación de Richardson sobre la regla del trapecio para obtener una convergencia rapidísima de alto orden.</div>
+        <div class="method-tags">
+          <span class="tag">extrapolación</span>
+          <span class="tag">O(h²ⁿ)</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Categoría 4: Sistemas de Ecuaciones -->
+  <div class="category">
+    <div class="category-title">04 — Sistemas de Ecuaciones Lineales</div>
+    <div class="methods-grid">
+
+      <a href="gauss.html" class="method-card">
+        <div class="card-top">
+          <span class="method-index">#011</span>
+          <span class="status-badge ready">Disponible</span>
+        </div>
+        <div class="method-icon">⎡⎤</div>
+        <div class="method-name">Método de Gauss</div>
+        <div class="method-desc">Resuelve Ax=b transformando el sistema en una matriz triangular superior mediante eliminación hacia adelante y sustitución regresiva.</div>
+        <div class="method-tags">
+          <span class="tag">exacto</span>
+          <span class="tag">eliminación</span>
+          <span class="tag">O(n³)</span>
+        </div>
+      </a>
+
+      <a href="gauss_jordan.html" class="method-card">
+        <div class="card-top">
+          <span class="method-index">#012</span>
+          <span class="status-badge ready">Disponible</span>
+        </div>
+        <div class="method-icon">𝕀</div>
+        <div class="method-name">Método de Gauss-Jordan</div>
+        <div class="method-desc">Variante de Gauss que elimina elementos tanto por encima como por debajo de la diagonal principal, resultando directamente en la solución.</div>
+        <div class="method-tags">
+          <span class="tag">exacto</span>
+          <span class="tag">diagonalización</span>
+        </div>
+      </a>
+
+      <a href="thomas.html" class="method-card">
+        <div class="card-top">
+          <span class="method-index">#013</span>
+          <span class="status-badge ready">Disponible</span>
+        </div>
+        <div class="method-icon">⋱</div>
+        <div class="method-name">Método de Thomas (TDMA)</div>
+        <div class="method-desc">Algoritmo optimizado O(n) para resolver sistemas de ecuaciones lineales tridiagonales.</div>
+        <div class="method-tags">
+          <span class="tag">tridiagonal</span>
+          <span class="tag">O(n)</span>
+        </div>
+      </a>
+
+      <a href="jacobi.html" class="method-card">
+        <div class="card-top">
+          <span class="method-index">#014</span>
+          <span class="status-badge ready">Disponible</span>
+        </div>
+        <div class="method-icon">↻</div>
+        <div class="method-name">Método de Jacobi</div>
+        <div class="method-desc">Aproxima la solución de forma iterativa aislando la variable de la diagonal principal. Ideal para matrices grandes dispersas.</div>
+        <div class="method-tags">
+          <span class="tag">iterativo</span>
+          <span class="tag">O(n²) por iter</span>
+        </div>
+      </a>
+
+      <a href="condicion.html" class="method-card">
+        <div class="card-top">
+          <span class="method-index">#015</span>
+          <span class="status-badge ready">Disponible</span>
+        </div>
+        <div class="method-icon">⚠</div>
+        <div class="method-name">Condicionamiento</div>
+        <div class="method-desc">Analiza la sensibilidad de un sistema calculando el número de condición de la matriz mediante el uso de la norma infinita.</div>
+        <div class="method-tags">
+          <span class="tag">análisis</span>
+          <span class="tag">estabilidad</span>
+        </div>
+      </a>
 
     </div>
   </div>

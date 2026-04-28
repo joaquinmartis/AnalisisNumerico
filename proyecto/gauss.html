@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bisección — Métodos Numéricos</title>
+  <title>Método de Gauss — Métodos Numéricos</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap"
     rel="stylesheet" />
@@ -588,7 +588,7 @@
   <nav>
     <a href="index.html" class="nav-back">← índice</a>
     <span class="nav-sep">/</span>
-    <span class="nav-current">bisección</span>
+    <span class="nav-current">gauss</span>
   </nav>
 
   <div class="page">
@@ -598,193 +598,54 @@
 
       <!-- Header -->
       <div class="page-header">
-        <div class="method-badge">#001 — Búsqueda de raíces</div>
-        <h1>Método de Bisección</h1>
-        <p class="intro-text">
-          Dado un intervalo [a, b] donde f(a) y f(b) tienen signos opuestos,
-          el método de bisección divide repetidamente el intervalo por la mitad
-          y selecciona el subintervalo donde ocurre el cambio de signo, convergiendo
-          hacia la raíz con error garantizado.
-        </p>
+        <div class="method-badge">#009 — Sistemas de Ecuaciones</div>
+        <h1>Método de Gauss</h1>
+        <p class="intro-text">Resuelve Ax=b transformando el sistema en una matriz triangular superior.</p>
       </div>
 
       <!-- Theory -->
       <div class="theory-block">
         <div class="section-title">Algoritmo</div>
         <div class="algo-steps">
+
           <div class="algo-step">
             <div class="step-num">1</div>
-            <div class="step-text">
-              Verificar que <span class="highlight">f(a) · f(b) &lt; 0</span>.
-              Si el producto es negativo, existe al menos una raíz en el intervalo
-              (Teorema de Bolzano).
-            </div>
+            <div class="step-text">Formar la matriz ampliada M = [A | b].</div>
           </div>
           <div class="algo-step">
             <div class="step-num">2</div>
-            <div class="step-text">
-              Calcular el punto medio: <span class="highlight">c = (a + b) / 2</span>
-              y evaluar f(c).
-            </div>
+            <div class="step-text">Para cada columna k, usar el elemento diagonal M[k,k] como pivote.</div>
           </div>
           <div class="algo-step">
             <div class="step-num">3</div>
-            <div class="step-text">
-              Si <span class="hi-teal">f(a) · f(c) &lt; 0</span>, la raíz está en [a, c] → actualizar <span
-                class="hi-teal">b = c</span>.<br />
-              Si <span class="hi-red">f(c) · f(b) &lt; 0</span>, la raíz está en [c, b] → actualizar <span
-                class="hi-red">a = c</span>.
-            </div>
+            <div class="step-text">Hacer ceros por debajo del pivote usando operaciones elementales de fila.</div>
           </div>
           <div class="algo-step">
             <div class="step-num">4</div>
-            <div class="step-text">
-              Repetir hasta que <span class="highlight">|b - a| &lt; tolerancia</span>
-              o se alcance el máximo de iteraciones.
-            </div>
+            <div class="step-text">Resolver el sistema triangular superior mediante sustitución regresiva.</div>
           </div>
+
         </div>
-        <div class="formula-box">
-          c = (a + b) / 2 &nbsp;|&nbsp; error ≤ (b - a) / 2ⁿ
-        </div>
-      </div>
-
-      <!-- SVG Graphic -->
-      <div class="graphic-container">
-        <div class="section-title">Ejemplo gráfico</div>
-        <svg id="bisect-svg" viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg">
-          <!-- Background -->
-          <rect width="560" height="320" fill="#13151c" />
-
-          <!-- Grid lines -->
-          <g stroke="#2a2d3e" stroke-width="0.5">
-            <!-- Horizontal -->
-            <line x1="50" y1="60" x2="530" y2="60" />
-            <line x1="50" y1="100" x2="530" y2="100" />
-            <line x1="50" y1="140" x2="530" y2="140" />
-            <line x1="50" y1="180" x2="530" y2="180" />
-            <line x1="50" y1="220" x2="530" y2="220" />
-            <line x1="50" y1="260" x2="530" y2="260" />
-            <!-- Vertical -->
-            <line x1="130" y1="40" x2="130" y2="290" />
-            <line x1="210" y1="40" x2="210" y2="290" />
-            <line x1="290" y1="40" x2="290" y2="290" />
-            <line x1="370" y1="40" x2="370" y2="290" />
-            <line x1="450" y1="40" x2="450" y2="290" />
-          </g>
-
-          <!-- X axis -->
-          <line x1="50" y1="180" x2="530" y2="180" stroke="#6b7099" stroke-width="1.5" />
-          <!-- Y axis -->
-          <line x1="50" y1="30" x2="50" y2="295" stroke="#6b7099" stroke-width="1.5" />
-
-          <!-- Axis labels -->
-          <text x="535" y="184" fill="#6b7099" font-family="Space Mono" font-size="11">x</text>
-          <text x="38" y="26" fill="#6b7099" font-family="Space Mono" font-size="11">f(x)</text>
-
-          <!-- Tick labels X -->
-          <text x="127" y="298" fill="#6b7099" font-family="Space Mono" font-size="9" text-anchor="middle">a</text>
-          <text x="290" y="298" fill="#6b7099" font-family="Space Mono" font-size="9" text-anchor="middle">c₁</text>
-          <text x="369" y="298" fill="#6b7099" font-family="Space Mono" font-size="9" text-anchor="middle">c₂</text>
-          <text x="450" y="298" fill="#6b7099" font-family="Space Mono" font-size="9" text-anchor="middle">b</text>
-
-          <!-- Shade: original interval [a,b] -->
-          <rect x="130" y="40" width="320" height="240" fill="rgba(245,166,35,0.04)" stroke="none" />
-
-          <!-- Shade: narrowed interval after iter 1 [c1, b] -->
-          <rect x="290" y="40" width="160" height="240" fill="rgba(245,166,35,0.06)" stroke="none" />
-
-          <!-- Interval markers -->
-          <!-- a -->
-          <line x1="130" y1="60" x2="130" y2="280" stroke="#f5a623" stroke-width="1" stroke-dasharray="4,4"
-            opacity="0.6" />
-          <!-- b -->
-          <line x1="450" y1="60" x2="450" y2="280" stroke="#f5a623" stroke-width="1" stroke-dasharray="4,4"
-            opacity="0.6" />
-          <!-- c1 midpoint -->
-          <line x1="290" y1="60" x2="290" y2="280" stroke="#00d4aa" stroke-width="1.5" stroke-dasharray="5,3"
-            opacity="0.8" />
-          <!-- c2 midpoint iter2 -->
-          <line x1="370" y1="60" x2="370" y2="280" stroke="#00d4aa" stroke-width="1" stroke-dasharray="4,3"
-            opacity="0.5" />
-
-          <!-- Function curve: cubic-ish, crosses zero around x=400 -->
-          <!-- Points computed for a "nice" curve: f(a)≈-2.4, f(b)≈+2.2 -->
-          <path d="M 50,270
-                 C 80,265 110,260 130,252
-                 C 160,238 190,215 210,210
-                 C 240,204 260,200 280,196
-                 C 300,192 320,186 340,175
-                 C 360,162 380,148 400,148
-                 C 420,148 440,142 460,130
-                 C 480,118 500,105 530,90" fill="none" stroke="#f5a623" stroke-width="2.5" opacity="0.9" />
-
-          <!-- Zero crossing marker -->
-          <circle cx="408" cy="148" r="5" fill="none" stroke="#ff4757" stroke-width="2" />
-          <circle cx="408" cy="148" r="2" fill="#ff4757" />
-          <text x="414" y="144" fill="#ff4757" font-family="Space Mono" font-size="9">raíz ≈ x*</text>
-
-          <!-- f(a) point - negative -->
-          <circle cx="130" cy="252" r="4" fill="#f5a623" opacity="0.8" />
-          <!-- f(b) point - positive -->
-          <circle cx="450" cy="130" r="4" fill="#f5a623" opacity="0.8" />
-          <!-- f(c1) midpoint - positive -->
-          <circle cx="290" cy="196" r="4" fill="#00d4aa" />
-          <!-- f(c2) -->
-          <circle cx="370" cy="162" r="4" fill="#00d4aa" opacity="0.7" />
-
-          <!-- Sign labels -->
-          <text x="118" y="246" fill="#ff4757" font-family="Space Mono" font-size="9"
-            text-anchor="middle">f(a)&lt;0</text>
-          <text x="462" y="124" fill="#00d4aa" font-family="Space Mono" font-size="9">f(b)&gt;0</text>
-          <text x="278" y="190" fill="#00d4aa" font-family="Space Mono" font-size="9"
-            text-anchor="end">f(c₁)&gt;0</text>
-
-          <!-- Arrow: interval shrinks -->
-          <text x="160" y="46" fill="#6b7099" font-family="Space Mono" font-size="8">iter 1: [a, b]</text>
-          <text x="295" y="56" fill="#00d4aa" font-family="Space Mono" font-size="8">iter 2: [c₁, b]</text>
-
-          <!-- Legend -->
-          <rect x="380" y="268" width="140" height="42" fill="#13151c" stroke="#2a2d3e" stroke-width="1" />
-          <line x1="388" y1="279" x2="406" y2="279" stroke="#f5a623" stroke-width="2" />
-          <text x="410" y="282" fill="#6b7099" font-family="Space Mono" font-size="8">f(x)</text>
-          <line x1="388" y1="294" x2="406" y2="294" stroke="#00d4aa" stroke-width="1.5" stroke-dasharray="3,2" />
-          <text x="410" y="297" fill="#6b7099" font-family="Space Mono" font-size="8">punto medio</text>
-        </svg>
-        <p class="graphic-caption">
-          Iteración 1: intervalo [a,b] → c₁=(a+b)/2, f(c₁)&gt;0 → nueva búsqueda en [c₁,b] &nbsp;|&nbsp;
-          La raíz queda acotada con precisión creciente.
-        </p>
       </div>
 
       <!-- Convergence info -->
       <div>
         <div class="section-title">Propiedades</div>
         <div class="info-grid">
+
           <div class="info-cell">
-            <div class="info-cell-label">Convergencia</div>
-            <div class="info-cell-value amber">Lineal</div>
+            <div class="info-cell-label">Tipo</div>
+            <div class="info-cell-value amber">Exacto (Directo)</div>
           </div>
           <div class="info-cell">
-            <div class="info-cell-label">Error en iteración n</div>
-            <div class="info-cell-value">(b-a) / 2ⁿ</div>
+            <div class="info-cell-label">Complejidad</div>
+            <div class="info-cell-value">O(n³)</div>
           </div>
           <div class="info-cell">
-            <div class="info-cell-label">Garantía</div>
-            <div class="info-cell-value teal">Siempre converge</div>
+            <div class="info-cell-label">Pivoteo</div>
+            <div class="info-cell-value red">Sin pivoteo</div>
           </div>
-          <div class="info-cell">
-            <div class="info-cell-label">Requisito</div>
-            <div class="info-cell-value">f continua, cambio de signo</div>
-          </div>
-          <div class="info-cell">
-            <div class="info-cell-label">Evaluaciones / iter</div>
-            <div class="info-cell-value amber">1</div>
-          </div>
-          <div class="info-cell">
-            <div class="info-cell-label">Raíces múltiples</div>
-            <div class="info-cell-value red">No detecta</div>
-          </div>
+
         </div>
       </div>
 
@@ -797,67 +658,62 @@
         Calculadora
       </div>
 
-      <div class="field-group">
-        <label for="func">f(x)</label>
-        <input type="text" id="func" placeholder="ej: x**3 - x - 2" autocomplete="off" />
-        <div class="field-hint">
-          La función cuya raíz buscás. Usá ** para potencias, exp(), sin(), cos(), log(), sqrt().
-          Debe tener distinto signo en a y b.
-        </div>
-      </div>
 
       <div class="field-group">
-        <label for="a">Extremo a (límite inferior)</label>
-        <input type="number" id="a" placeholder="ej: 1" step="any" />
-        <div class="field-hint">
-          Extremo izquierdo del intervalo inicial. f(a) debe tener signo opuesto a f(b).
-        </div>
+        <label for="matrixA">Matriz A (Filas separadas por nueva línea, cols por espacios/comas)</label>
+        <textarea id="matrixA" placeholder="ej:
+1 2
+3 4" rows="5"
+          style="background: var(--bg); border: 1px solid var(--border); color: var(--text); font-family: var(--mono); font-size: 0.82rem; padding: 0.65rem 0.9rem; resize: vertical;"></textarea>
       </div>
-
       <div class="field-group">
-        <label for="b">Extremo b (límite superior)</label>
-        <input type="number" id="b" placeholder="ej: 2" step="any" />
-        <div class="field-hint">
-          Extremo derecho del intervalo inicial. Verificá que f(a)·f(b) &lt; 0.
-        </div>
+        <label for="vectorB">Vector b (separado por espacios o comas)</label>
+        <input type="text" id="vectorB" placeholder="ej: 5 6" />
       </div>
 
-      <div class="divider"></div>
-
-      <div class="field-group">
-        <label for="tol">Tolerancia</label>
-        <input type="number" id="tol" value="1e-6" step="any" />
-        <div class="field-hint">
-          Criterio de parada: el método termina cuando el intervalo sea menor que este valor.
-          Típico: 1e-6.
-        </div>
+      <div class="field-group" style="flex-direction: row; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+        <input type="checkbox" id="pivoteo" style="width: auto; appearance: auto; cursor: pointer;" />
+        <label for="pivoteo" style="cursor: pointer; margin: 0; color: var(--text); text-transform: none; font-size: 0.75rem;">Activar pivoteo parcial por filas</label>
       </div>
 
-      <div class="field-group">
-        <label for="maxiter">Máx. iteraciones</label>
-        <input type="number" id="maxiter" value="100" min="1" max="1000" />
-        <div class="field-hint">
-          Límite de seguridad. Con tolerancia 1e-6 e intervalo de tamaño 1,
-          se necesitan ≈ 20 iteraciones.
-        </div>
-      </div>
 
       <button class="submit-btn" id="calc-btn" onclick="calcular()">
-        ▶ &nbsp; Ejecutar bisección
+        ▶ &nbsp; Ejecutar Método de Gauss
       </button>
 
-      <div id="results-panel">
+      <div id="results-panel" style="display:none; margin-top: 1.5rem;">
         <div id="results-content"></div>
       </div>
 
-      <div id="error-box" style="display:none"></div>
+      <div id="error-box" style="display:none" class="error-msg"></div>
     </div>
 
   </div><!-- end page -->
 
   <script>
+
     const API_BASE_URL = 'http://127.0.0.1:5000';
-    const API_ENDPOINT = '/api/biseccion';
+    const API_ENDPOINT = '/api/gauss';
+
+    function parseMatrix(text) {
+      return text.trim().split('\n').map(row =>
+        row.trim().split(/[,\s]+/).map(Number)
+      );
+    }
+
+    function parseVector(text) {
+      return text.trim().split(/[,\s]+/).map(Number);
+    }
+
+    function showError(msg) {
+      const errorBox = document.getElementById('error-box');
+      errorBox.textContent = msg;
+      errorBox.style.display = 'block';
+
+      const btn = document.getElementById('calc-btn');
+      btn.disabled = false;
+      btn.textContent = '▶  Ejecutar Método de Gauss';
+    }
 
     async function calcular() {
       const btn = document.getElementById('calc-btn');
@@ -865,127 +721,64 @@
       const errorBox = document.getElementById('error-box');
       const content = document.getElementById('results-content');
 
-      // Leer inputs
-      const func = document.getElementById('func').value.trim();
-      const a = parseFloat(document.getElementById('a').value);
-      const b = parseFloat(document.getElementById('b').value);
-      const tol = parseFloat(document.getElementById('tol').value);
-      const maxiter = parseInt(document.getElementById('maxiter').value);
-
-      // Validaciones básicas
       errorBox.style.display = 'none';
       panel.style.display = 'none';
 
-      if (!func) return showError('Ingresá una función f(x).');
-      if (isNaN(a) || isNaN(b)) return showError('Ingresá valores numéricos para a y b.');
-      if (a >= b) return showError('El valor de a debe ser menor que b.');
-      if (isNaN(tol) || tol <= 0) return showError('La tolerancia debe ser un número positivo.');
-      if (isNaN(maxiter) || maxiter < 1) return showError('El máximo de iteraciones debe ser ≥ 1.');
+      let A, b;
+      try {
+        A = parseMatrix(document.getElementById('matrixA').value);
+        b = parseVector(document.getElementById('vectorB').value);
+        pivoteo = document.getElementById('pivoteo').checked;
+      } catch (e) {
+        return showError("Error al leer la matriz A o el vector b.");
+      }
 
-      // Loading
+      if (A.length === 0 || A[0].length === 0) return showError('Agregá una matriz A.');
+      if (b.length === 0) return showError('Agregá un vector b.');
+
       btn.disabled = true;
       btn.textContent = '▷  calculando...';
       panel.style.display = 'block';
-      content.innerHTML = '<div class="loading-indicator">ejecutando bisección</div>';
+      content.innerHTML = '<div class="loading-indicator">ejecutando gauss</div>';
 
       try {
         const resp = await fetch(API_BASE_URL + API_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ funcion: func, a, b, tolerancia: tol, max_iter: maxiter })
+          body: JSON.stringify({ A, b, pivoteo })
         });
-
         const data = await resp.json();
 
-        if (!resp.ok || data.error) {
-          throw new Error(data.error || 'Error en la API.');
-        }
-
-        renderResults(data);
-      } catch (err) {
-        panel.style.display = 'none';
-        showError(err.message || 'No se pudo conectar con la API. ¿Está corriendo el servidor?');
-      } finally {
         btn.disabled = false;
-        btn.textContent = '▶  Ejecutar bisección';
+        btn.textContent = '▶  Ejecutar Método de Gauss';
+
+        if (!resp.ok) return showError(data.error || 'Error del servidor');
+
+        // Mostrar resultados
+        let html = `<div class="results-title">Resultados</div>`;
+        html += `<div class="result-root"><div class="result-root-label">Solución x</div>`;
+        html += `<div class="result-root-value">[${data.solucion.map(n => Number(n).toPrecision(5)).join(', ')}]</div></div>`;
+
+        html += `<div class="results-title" style="margin-top: 1.5rem;">Pasos</div>`;
+        for (let p of data.pasos) {
+          html += `<div class="result-meta-label" style="margin-top:10px;">${p.etapa}</div>`;
+          html += `<table class="iter-table" style="margin-bottom:10px;"><tbody>`;
+          for (let row of p.matriz) {
+            html += `<tr>`;
+            for (let val of row) {
+              html += `<td>${Number(val).toPrecision(4)}</td>`;
+            }
+            html += `</tr>`;
+          }
+          html += `</tbody></table>`;
+        }
+        content.innerHTML = html;
+
+      } catch (err) {
+        showError('Error de red al conectar con la API.');
       }
     }
 
-    function renderResults(data) {
-      const content = document.getElementById('results-content');
-      const iters = data.iteraciones || [];
-
-      const tableRows = iters.map((it, i) => `
-      <tr>
-        <td>${it.n}</td>
-        <td>${it.a.toFixed(8)}</td>
-        <td>${it.b.toFixed(8)}</td>
-        <td>${it.c.toFixed(8)}</td>
-        <td>${it.fc.toExponential(3)}</td>
-        <td>${it.error.toExponential(3)}</td>
-      </tr>
-    `).join('');
-
-      content.innerHTML = `
-      <div class="results-title">// resultado</div>
-
-      <div class="result-root">
-        <div class="result-root-label">Raíz aproximada</div>
-        <div class="result-root-value">${data.raiz.toFixed(10)}</div>
-      </div>
-
-      <div class="result-meta">
-        <div class="result-meta-cell">
-          <div class="result-meta-label">Iteraciones</div>
-          <div class="result-meta-val">${data.n_iteraciones}</div>
-        </div>
-        <div class="result-meta-cell">
-          <div class="result-meta-label">Error final</div>
-          <div class="result-meta-val">${data.error_final.toExponential(4)}</div>
-        </div>
-        <div class="result-meta-cell">
-          <div class="result-meta-label">f(raíz)</div>
-          <div class="result-meta-val">${data.f_raiz.toExponential(4)}</div>
-        </div>
-        <div class="result-meta-cell">
-          <div class="result-meta-label">Convergió</div>
-          <div class="result-meta-val" style="color: ${data.convergido ? 'var(--teal)' : 'var(--red)'}">
-            ${data.convergido ? 'sí' : 'no (max iter)'}
-          </div>
-        </div>
-      </div>
-
-      <div class="section-title" style="font-size:0.6rem; margin-bottom:0.75rem;">
-        Tabla de iteraciones
-      </div>
-      <div class="table-wrap">
-        <table class="iter-table">
-          <thead>
-            <tr>
-              <th>n</th>
-              <th>a</th>
-              <th>b</th>
-              <th>c</th>
-              <th>f(c)</th>
-              <th>error</th>
-            </tr>
-          </thead>
-          <tbody>${tableRows}</tbody>
-        </table>
-      </div>
-    `;
-    }
-
-    function showError(msg) {
-      const errorBox = document.getElementById('error-box');
-      errorBox.innerHTML = `<div class="error-msg">⚠ ${msg}</div>`;
-      errorBox.style.display = 'block';
-    }
-
-    // Demo: allow pressing Enter in inputs
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Enter') calcular();
-    });
   </script>
 
 </body>
